@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class Filme {
     
+    private int id;
     private String nome;
     private Date datalancamento;
     private String Categoria;
@@ -39,4 +40,15 @@ public class Filme {
     public void setCategoria(String Categoria) {
         this.Categoria = Categoria;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+   
+    
 }
