@@ -22,11 +22,20 @@ public class FilmeDAO {
     private Conexao conexao;
     private Connection conn;
     
+    /**
+     * 
+     * Metodo construtor que ja inicia com uma instância de conexão com o banco de dados
+     * 
+     */
     public FilmeDAO(){
         this.conexao = new Conexao();
         this.conn = this.conexao.getConexao();
     }
-    
+    /**
+     * Recebe como parametro um objeto do tipo filme e faz a inserção no banco de dados 
+     * dos parametros recebidos
+     * @param filme -> objeto filme
+     */
     public void inserir(Filme filme){
         String sql = "INSERT INTO filmes(nome,datalancamento,categoria) VALUES (?,?,?)";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,7 +50,12 @@ public class FilmeDAO {
         }
         
     }
-    
+    /**
+     * Recebe um parametro categoria do tipo String para busca no banco de dados dos filmes com a respectiva categoria
+     * retornando assim uma lista do objeto filme com a dada categoria
+     * @param categoria
+     * @return 
+     */
     public List<Filme> getFilmesPorCategoria(String categoria){
           String sql = "SELECT * FROM filmes WHERE categoria LIKE ? "; 
             try {
@@ -64,13 +78,19 @@ public class FilmeDAO {
 
           return listaFilmes;
           
-
+          
       } catch (Exception e) {
         System.out.println("Fime não encontrado");
           return null;
       }
     }
-    
+    /**
+     * Similar ao metodo  getFilmesPorCategoria() sendo que nesse outro metodo recebemos o nome do filme 
+     * retornando tambem uma lista desses ojetos 
+     * contendo os devidor parametros passados
+     * @param nome
+     * @return 
+     */
     public List<Filme> getFilmes(String nome){
          String sql = "SELECT * FROM filmes WHERE nome LIKE ?";
          
@@ -98,6 +118,11 @@ public class FilmeDAO {
          }
      }
      
+    /**
+     * Recebe como parametro um obejto do tipo filme, 
+     * obejeto esse a ser editado 
+     * @param filme -> objeto a ser editado
+     */
     public void editar (Filme filme){
        String sql = "UPDATE filmes SET  nome=?,datalancamento=?,categoria=? WHERE id =?";
        try {
@@ -122,7 +147,10 @@ public class FilmeDAO {
           System.out.println("Erro ao editar filme verifique os dados digitados: " + e.getMessage());
       }
    }
-    
+    /**
+     * Recebe como parametro o id do registro a ser excluido dentro do banco de dados
+     * @param id 
+     */
     public void excluir(int id){
        String sql = "DELETE FROM filmes WHERE  id = ?";
           try {

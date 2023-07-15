@@ -20,7 +20,11 @@ import javax.swing.table.TableRowSorter;
  */
 public class ConsultaFilme extends javax.swing.JFrame {
     
-    
+    /**
+     * Metodo que ira realizar sempre o povoamento da tabela quando a mesma 
+     * for iniciada, preenchida ou alterada
+     *
+     */
      private void preencherTabela(){
         FilmeDAO filmeDao = new FilmeDAO();
         String categoria = "%"+txtCategoria.getText()+"%";
